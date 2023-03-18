@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { MdDarkMode } from "react-icons/md";
 import ThemeContext from './ThemeContext';
+import { Link } from 'react-router-dom';
 
 export const Navbar = () => {
 
@@ -41,11 +42,11 @@ export const Navbar = () => {
                     <GiHamburgerMenu onClick={toggleShow}/>
                     </div>
                     <div className='hidden lg:flex space-x-10 w-[50%]'>
-                        <a href='#' className='text-slate-400 hover:text-slate-100 cursor-pointer font-semibold '>Home</a>
-                        <a href='#' className='text-slate-400 hover:text-slate-100 cursor-pointer font-semibold '>Shop</a>
-                        <a href='#' className='text-slate-400 hover:text-slate-100 cursor-pointer font-semibold '>Pages</a>
-                        <a href='#' className='text-slate-400 hover:text-slate-100 cursor-pointer font-semibold '>Blog</a>
-                        <a href='#' className='text-slate-400 hover:text-slate-100 cursor-pointer font-semibold '>Contact</a>
+                        <Link to='/' className='text-slate-400 hover:text-slate-100 cursor-pointer font-semibold '>Home</Link>
+                        <Link to='/shop' className='text-slate-400 hover:text-slate-100 cursor-pointer font-semibold '>Shop</Link>
+                        <Link to='#' className='text-slate-400 hover:text-slate-100 cursor-pointer font-semibold '>Pages</Link>
+                        <Link to='#' className='text-slate-400 hover:text-slate-100 cursor-pointer font-semibold '>Blog</Link>
+                        <Link to='#' className='text-slate-400 hover:text-slate-100 cursor-pointer font-semibold '>Contact</Link>
                     </div>
                     <div className='lg:flex-row lg:justify-end lg:space-x-5 lg:space-y-0 lg:w-[10%] lg: mr-[10%] hidden lg:flex'>
                         <div className='w-[20%] flex justify-center items-center'>
@@ -71,11 +72,11 @@ export const Navbar = () => {
                       ease: [0, 0.71, 0.2, 1.01]
                     }}
                     >
-                    <a href='#' className='text-slate-400 font-semibold'>Home</a>
-                    <a href='#' className='text-slate-400 font-semibold'>Shop</a>
-                    <a href='#' className='text-slate-400 font-semibold'>Pages</a>
-                    <a href='#' className='text-slate-400 font-semibold'>Blog</a>
-                    <a href='#' className='text-slate-400 font-semibold'>Contact</a>
+                    <Link to='/' className='text-slate-400 font-semibold'>Home</Link>
+                    <Link to='shop' className='text-slate-400 font-semibold'>Shop</Link>
+                    <Link to='#' className='text-slate-400 font-semibold'>Pages</Link>
+                    <Link to='#' className='text-slate-400 font-semibold'>Blog</Link>
+                    <Link to='#' className='text-slate-400 font-semibold'>Contact</Link>
                     </div>
                 )
                 }
