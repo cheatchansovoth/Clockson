@@ -37,7 +37,7 @@ export const Center = () => {
           </div>
         </div>
         <div className='grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 lg:place-items-center lg:h-[50vh] bg-black text-white h-[50vh] place-items-center'>
-          <div className='flex flex-col items-center lg:space-y-5'>
+          <div className='flex flex-col items-center space-y-2 lg:space-y-5'>
             <p>Stay Connected</p>
             <div></div>
             <div className='flex justify-center space-x-5 text-3xl'>
