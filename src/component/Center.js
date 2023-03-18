@@ -18,18 +18,23 @@ export const Center = () => {
     }, [currentImageIndex]);
   
     return (
-        <div className="w-full">
-        {images.map((imageUrl, index) => (
-          <motion.img
-            key={imageUrl}
-            src={imageUrl}
-            alt="carousel"
-            className="absolute  h-[50vh]"
-            initial={{ x: currentImageIndex === index ? 0 : "100%" }}
-            animate={{ x: currentImageIndex === index ? 0 : "-100%" }}
-            transition={{ ease: "easeInOut", duration: 0.5 }}
-          />
-        ))}
+        <div className="w-full flex flex-col justify-between  ">
+          <div>
+               {images.map((imageUrl, index) => (
+                  <motion.img
+                    key={imageUrl}
+                    src={imageUrl}
+                    alt="carousel"
+                    className="absolute h-[50vh] "
+                    initial={{ x: currentImageIndex === index ? 0 : "-120%" }}
+                    animate={{ x: currentImageIndex === index ? 0 : "100%" }}
+                    transition={{ ease: "easeInOut", duration: 0.5 }}
+                  />
+                ))}
+          </div>
+          <div>
+            hello world
+          </div>
       </div>
   )
 }
