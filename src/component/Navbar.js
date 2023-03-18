@@ -4,13 +4,17 @@ import { motion } from "framer-motion";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { MdDarkMode } from "react-icons/md";
 import ThemeContext from './ThemeContext';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate   } from 'react-router-dom';
 
 export const Navbar = () => {
 
     
     const [show, setShow] = useState(false);
-
+    const navigate = useNavigate();
+    const OnClickHandle=()=>
+    {
+      navigate('/');
+    }
     const toggleShow = () => {
       setShow(!show);
     };
@@ -25,7 +29,7 @@ export const Navbar = () => {
                         transition={{
                           duration:0.5
                         }}>
-                    <div className='w-[50%] flex items-center'>
+                    <div className='w-[50%] flex items-center hover:cursor-pointer' onClick={OnClickHandle}>
                     <h1 className={darkMode ? 'bg-gray-900 text-white  text-2xl font-bold' : 'bg-white text-black text-2xl font-bold'}><span>Clock</span></h1>
                     <motion.p className='text-2xl font-bold' 
                     animate={{
