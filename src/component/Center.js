@@ -19,13 +19,13 @@ export const Center = () => {
           <h1 className='tracking-widest'>Must Have Items</h1>
         </div>
         <div className='grid lg:grid-cols-3 grid-cols-1 sm:grid-cols-2 h-[100vh] lg:h-[40vh] lg:place-items-center'>
-          <div className="relative bg-[url('https://static.wixstatic.com/media/cda177_f95b14c95d6446de847782f0b6fd0027.png/v1/fill/w_299,h_353,al_c,q_90,usm_0.66_1.00_0.01/cda177_f95b14c95d6446de847782f0b6fd0027.webp')] bg-right-top flex flex-col justify-end text-center bg-cover lg:bg-no-repeat lg:w-[50%] lg:h-[40vh] transition-transform duration-500 ease-in-out hover:transform hover:scale-125">
+          <div className="relative bg-[url('https://static.wixstatic.com/media/cda177_f95b14c95d6446de847782f0b6fd0027.png/v1/fill/w_299,h_353,al_c,q_90,usm_0.66_1.00_0.01/cda177_f95b14c95d6446de847782f0b6fd0027.webp')] bg-right-top flex flex-col justify-end text-center bg-cover lg:bg-no-repeat h-[50vh] lg:w-[50%] lg:h-[40vh] transition-transform duration-500 ease-in-out hover:transform hover:scale-110">
             <p className='bg-black text-white p-3 font-semibold tracking-widest'>MIDI PLEATED SKIRT</p>
           </div>
-          <div className="bg-[url('https://static.wixstatic.com/media/cda177_b5a795ade21b41d38cadd836824e6768.jpg/v1/fill/w_292,h_385,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/cda177_b5a795ade21b41d38cadd836824e6768.jpg')] bg-bottom flex flex-col items-center bg-cover  lg:bg-no-repeat lg:w-[50%] lg:h-[40vh] transition-transform duration-500 ease-in-out hover:transform hover:scale-125">
+          <div className="bg-[url('https://static.wixstatic.com/media/cda177_b5a795ade21b41d38cadd836824e6768.jpg/v1/fill/w_292,h_385,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/cda177_b5a795ade21b41d38cadd836824e6768.jpg')] bg-bottom flex flex-col items-center bg-cover  lg:bg-no-repeat lg:w-[50%] h-[50vh] lg:h-[40vh] transition-transform duration-500 ease-in-out hover:transform hover:scale-110">
           <p className='translate-y-7 text-2xl font-semibold tracking-widest'>Sale</p>
           </div>
-          <div className="bg-[url('https://static.wixstatic.com/media/84770f_9a81715dcb4b43fa936d243fcd90e2a9.png/v1/fill/w_289,h_328,al_c,q_90,usm_0.66_1.00_0.01/84770f_9a81715dcb4b43fa936d243fcd90e2a9.webp')] flex flex-col justify-end text-center bg-cover bg-bottom lg:bg-no-repeat lg:w-[50%] lg:h-[40vh] transition-transform duration-500 ease-in-out hover:transform hover:scale-125">
+          <div className="bg-[url('https://static.wixstatic.com/media/84770f_9a81715dcb4b43fa936d243fcd90e2a9.png/v1/fill/w_289,h_328,al_c,q_90,usm_0.66_1.00_0.01/84770f_9a81715dcb4b43fa936d243fcd90e2a9.webp')] flex flex-col justify-end text-center bg-cover bg-bottom lg:bg-no-repeat lg:w-[50%] h-[50vh] lg:h-[40vh] transition-transform duration-500 ease-in-out hover:transform hover:scale-110">
           <p className='bg-black text-white p-3 font-semibold tracking-widest'>MIDI PLEATED SKIRT</p>
           </div>
         </div>
