@@ -1,5 +1,5 @@
 import React,{useState,useContext, useEffect} from 'react'
-import { GiHamburgerMenu } from "react-icons/gi";
+// import { GiHamburgerMenu } from "react-icons/gi";
 import { motion } from "framer-motion";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { MdDarkMode } from "react-icons/md";
@@ -38,7 +38,7 @@ export const Navbar = () => {
                     }}><span className={darkMode ? 'bg-gray-900 text-white' : 'bg-white text-red-400'}>S</span>o<span className={darkMode ? 'bg-gray-900 text-white' : 'bg-white text-red-400'}>N</span></motion.p>
                     </div>
                     <div className='my-6 h-[20%]  hover:text-slate-500 lg:hidden'>
-                    <GiHamburgerMenu onClick={toggleShow}/>
+                    {/* <GiHamburgerMenu onClick={toggleShow}/> */}
                     </div>
                     <div className='hidden lg:flex space-x-10 w-[50%]'>
                         <a href='#' className='text-slate-400 hover:text-slate-100 cursor-pointer font-semibold '>Home</a>
