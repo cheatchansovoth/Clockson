@@ -56,8 +56,8 @@ export const Center = () => {
           </motion.div>
         </div>
         <motion.div className='grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 lg:place-items-center lg:h-[50vh] bg-black text-white h-[50vh] place-items-center'
-          initial={{ y: "100%" }}
-          whileInView={{ y: 0 }}
+          initial={{ x: "100%" }}
+          whileInView={{ x: 0 }}
           transition={{ duration: 1 }}
         >
           <div className='flex flex-col items-center space-y-2 lg:space-y-5'>
