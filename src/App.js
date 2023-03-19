@@ -10,9 +10,10 @@ import { Shop } from "./component/Shop";
 function App() {
 
   const [darkMode, setDarkMode] = useState(false);
+  const [itemsNumber,setItemNumber]=useState(0);
   return (
     <Router>
-      <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
+      <ThemeContext.Provider value={{ darkMode, setDarkMode ,itemsNumber,setItemNumber}}>
               <div
               className={darkMode ? 'bg-gray-900 text-white h-[100vh]' : 'bg-white text-gray-900 h-[100vh]'}
               >

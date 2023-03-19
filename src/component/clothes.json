@@ -1,0 +1,170 @@
+[
+  {
+    "name": "Blue Denim Jacket",
+    "price": 49.99,
+    "image": "https://picsum.photos/200/300",
+    "color": "blue",
+    "sizes": ["S", "M", "L"]
+  },
+  {
+    "name": "Striped T-Shirt",
+    "price": 14.99,
+    "image": "https://picsum.photos/200/300",
+    "color": "red/purple",
+    "sizes": ["XS", "S", "M", "L"]
+  },
+  {
+    "name": "Black Skinny Jeans",
+    "price": 34.99,
+    "image": "https://picsum.photos/200/300",
+    "color": "black",
+    "sizes": ["S", "M", "L"]
+  },
+  {
+    "name": "Floral Print Dress",
+    "price": 59.99,
+    "image": "https://picsum.photos/200/300",
+    "color": "yellow/green",
+    "sizes": ["S", "M", "L"]
+  },
+  {
+    "name": "White Button-Up Shirt",
+    "price": 24.99,
+    "image": "https://picsum.photos/200/300",
+    "color": "white",
+    "sizes": ["XS", "S", "M", "L"]
+  },
+  {
+    "name": "Leather Moto Jacket",
+    "price": 89.99,
+    "image": "https://picsum.photos/200/300",
+    "color": "black",
+    "sizes": ["S", "M", "L"]
+  },
+  {
+    "name": "Athletic Joggers",
+    "price": 29.99,
+    "image": "https://picsum.photos/200/300",
+    "color": "grey",
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "name": "Red Plaid Skirt",
+    "price": 39.99,
+    "image": "https://picsum.photos/200/300",
+    "color": "red",
+    "sizes": ["XS", "S", "M", "L"]
+  },
+  {
+    "name": "Crew Neck Sweater",
+    "price": 44.99,
+    "image": "https://picsum.photos/200/300",
+    "color": "purple",
+    "sizes": ["S", "M", "L"]
+  },
+  {
+    "name": "High-Waisted Shorts",
+    "price": 19.99,
+    "image": "https://picsum.photos/200/300",
+    "color": "blue",
+    "sizes": ["S", "M", "L"]
+  },
+  {
+    "name": "Pleated Midi Skirt",
+    "price": 54.99,
+    "image": "https://picsum.photos/200/300",
+    "color": "green",
+    "sizes": ["S", "M", "L"]
+  },
+  {
+    "name": "Graphic Print Tee",
+    "price": 17.99,
+    "image": "https://picsum.photos/200/300",
+    "color": "red/yellow",
+    "sizes": ["XS", "S", "M", "L"]
+  },
+  {
+    "name": "Blue Denim Jacket",
+    "price": 49.99,
+    "image": "https://picsum.photos/200/300",
+    "color": "blue",
+    "sizes": ["S", "M", "L"]
+  },
+  {
+    "name": "Striped T-Shirt",
+    "price": 14.99,
+    "image": "https://picsum.photos/200/300",
+    "color": "red/purple",
+    "sizes": ["XS", "S", "M", "L"]
+  },
+  {
+    "name": "Black Skinny Jeans",
+    "price": 34.99,
+    "image": "https://picsum.photos/200/300",
+    "color": "black",
+    "sizes": ["S", "M", "L"]
+  },
+  {
+    "name": "Floral Print Dress",
+    "price": 59.99,
+    "image": "https://picsum.photos/200/300",
+    "color": "yellow/green",
+    "sizes": ["S", "M", "L"]
+  },
+  {
+    "name": "White Button-Up Shirt",
+    "price": 24.99,
+    "image": "https://picsum.photos/200/300",
+    "color": "white",
+    "sizes": ["XS", "S", "M", "L"]
+  },
+  {
+    "name": "Leather Moto Jacket",
+    "price": 89.99,
+    "image": "https://picsum.photos/200/300",
+    "color": "black",
+    "sizes": ["S", "M", "L"]
+  },
+  {
+    "name": "Athletic Joggers",
+    "price": 29.99,
+    "image": "https://picsum.photos/200/300",
+    "color": "grey",
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "name": "Red Plaid Skirt",
+    "price": 39.99,
+    "image": "https://picsum.photos/200/300",
+    "color": "red",
+    "sizes": ["XS", "S", "M", "L"]
+  },
+  {
+    "name": "Crew Neck Sweater",
+    "price": 44.99,
+    "image": "https://picsum.photos/200/300",
+    "color": "purple",
+    "sizes": ["S", "M", "L"]
+  },
+  {
+    "name": "High-Waisted Shorts",
+    "price": 19.99,
+    "image": "https://picsum.photos/200/300",
+    "color": "blue",
+    "sizes": ["S", "M", "L"]
+  },
+  {
+    "name": "Pleated Midi Skirt",
+    "price": 54.99,
+    "image": "https://picsum.photos/200/300",
+    "color": "green",
+    "sizes": ["S", "M", "L"]
+  },
+  {
+    "name": "Graphic Print Tee",
+    "price": 17.99,
+    "image": "https://picsum.photos/200/300",
+    "color": "red/yellow",
+    "sizes": ["XS", "S", "M", "L"]
+  }
+]

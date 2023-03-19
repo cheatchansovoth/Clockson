@@ -19,6 +19,7 @@ export const Navbar = () => {
       setShow(!show);
     };
     const { darkMode, setDarkMode } = useContext(ThemeContext);
+    const { itemsNumber,setItemNumber} = useContext(ThemeContext);
   return (
             <div
             className={darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}
@@ -53,11 +54,12 @@ export const Navbar = () => {
                         <Link to='#' className='text-slate-400 hover:text-slate-100 cursor-pointer font-semibold '>Contact</Link>
                     </div>
                     <div className='lg:flex-row lg:justify-end lg:space-x-5 lg:space-y-0 lg:w-[10%] lg: mr-[10%] hidden lg:flex'>
-                        <div className='w-[20%] flex justify-center items-center'>
+                        <div className='w-[20%] flex justify-center items-center space-x-4'>
+                        <span className="badge badge-sm indicator-item">{itemsNumber}</span>
                         <p className='text-2xl '><AiOutlineShoppingCart/></p>
                         <a href='#' className='font-bold'>$0.00</a>
-                        </div>
                         <p className='text-2xl' onClick={() => setDarkMode(!darkMode)}><MdDarkMode/></p>
+                        </div>
                     </div>
                     <div className='flex items-center justify-center lg:hidden'>
                         <p className='text-2xl'><AiOutlineShoppingCart/></p>
