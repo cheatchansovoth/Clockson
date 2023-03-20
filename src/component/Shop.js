@@ -16,6 +16,7 @@ export const Shop = () => {
     const itemsPerPage = 8;
     const filteredClothes = selectedColor ? clothes.filter(item => item.color === selectedColor) : clothes;
     const [sortBy, setSortBy] = useState('newest');
+
     const handleSortByChange = (e) => { // event handler for updating sortBy state
       setSortBy(e.target.value);
       setCurrentPage(1); // reset current page when sorting changes
@@ -46,6 +47,7 @@ export const Shop = () => {
     {
       setCartItems([...cartItems,{...product}]);
       setItemNumber(cartItems.length)
+      window.localStorage.setItem('itemsPrice',JSON.stringify(cartItems));
     }
     const handleToggleColors = () => {
       setShowColors(!showColors);
@@ -56,7 +58,7 @@ export const Shop = () => {
       return (
         <div className="w-full lg:w-full md:w-1/2 p-4">
           <div className={darkMode ? 'bg-gray-900 text-white rounded-lg overflow-hidden shadow-lg' : 'bg-white text-gray-900 rounded-lg overflow-hidden shadow-lg'}>
-            <div className="w-full h-[20vh] bg-gray-200">
+            <div className="w-full lg:h-[20vh] bg-gray-200">
               <img src={clothingItem.image} alt={clothingItem.name} className="w-full h-full object-cover" />
             </div>
             <div className="p-4">
@@ -98,12 +100,12 @@ export const Shop = () => {
     
       return (
         <div className='h-[50vh]'>
-          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4">
+          <div className={darkMode ? 'bg-gray-900 text-white grid lg:grid-cols-4 md:grid-cols-2 gap-4' : 'bg-white text-gray-900 grid lg:grid-cols-4 md:grid-cols-2 gap-4'}>
             {currentItems.map((clothingItem, index) => (
               <ClothesCard key={index} clothingItem={clothingItem} />
             ))}
           </div>
-          <div className="flex justify-center w-full lg:space-x-10">
+          <div className={darkMode ? 'bg-gray-900 text-white flex justify-center w-full lg:space-x-10' : 'bg-white text-gray-900 flex justify-center w-full lg:space-x-10'}>
             <div className='flex justify-center items-center'>
               <GrFormPrevious className={darkMode ? 'text-xl text-white':'text-xl text-black'}/>
               <button

@@ -2,6 +2,7 @@ import React,{useState,useContext, useEffect} from 'react'
 import { GiHamburgerMenu } from "react-icons/gi";
 import { motion } from "framer-motion";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { BsFillPersonFill } from "react-icons/bs";
 import { MdDarkMode } from "react-icons/md";
 import ThemeContext from './ThemeContext';
 import { Link,useNavigate   } from 'react-router-dom';
@@ -11,13 +12,26 @@ export const Navbar = () => {
     
     const [show, setShow] = useState(false);
     const navigate = useNavigate();
+    // const getCart=localStorage.getItem('itemsPrice');
+    // var totalPrice=0;
+    // let cartItems = [];
+    // if (getCart) {
+    //   cartItems = JSON.parse(getCart);
+    // } else {
+    //   localStorage.setItem('itemsPrice', JSON.stringify(cartItems));
+    // }
     const OnClickHandle=()=>
     {
       navigate('/');
     }
+    const OnClickProfile=()=>
+    {
+      navigate('/login');
+    }
     const toggleShow = () => {
       setShow(!show);
     };
+    // totalPrice=cartItems.reduce((a,v) =>  a = a + v.Price , 0 );
     const { darkMode, setDarkMode } = useContext(ThemeContext);
     const { itemsNumber,setItemNumber} = useContext(ThemeContext);
   return (
@@ -57,13 +71,15 @@ export const Navbar = () => {
                         <div className='w-[20%] flex justify-center items-center space-x-4'>
                         <span className="badge badge-sm indicator-item">{itemsNumber}</span>
                         <p className='text-2xl '><AiOutlineShoppingCart/></p>
-                        <a href='#' className='font-bold'>$0.00</a>
+                        <a href='#' className='font-bold'>${0}</a>
                         <p className='text-2xl' onClick={() => setDarkMode(!darkMode)}><MdDarkMode/></p>
+                        <p className='text-2xl cursor-pointer' onClick={OnClickProfile}><BsFillPersonFill/></p>
                         </div>
                     </div>
                     <div className='flex items-center justify-center lg:hidden'>
                         <p className='text-2xl'><AiOutlineShoppingCart/></p>
-                        <a href='#' className='font-bold'>$0.00</a>
+                        <a href='#' className='font-bold'>${0}</a>
+                        <p className='text-2xl' onClick={OnClickProfile}><BsFillPersonFill/></p>
                     </div>
                     <p className='text-2xl lg:hidden'  onClick={() => setDarkMode(!darkMode)}><MdDarkMode/></p>
                 </motion.div>
