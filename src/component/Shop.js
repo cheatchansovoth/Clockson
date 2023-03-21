@@ -56,7 +56,7 @@ export const Shop = () => {
     function ClothesCard({ clothingItem }) {
       
       return (
-        <div className="w-full lg:w-full md:w-1/2 p-4">
+        <div className="w-full lg:w-full md:w-1/2 p-4 ">
           <div className={darkMode ? 'bg-gray-900 text-white rounded-lg overflow-hidden shadow-lg' : 'bg-white text-gray-900 rounded-lg overflow-hidden shadow-lg'}>
             <div className="w-full lg:h-[20vh] bg-gray-200">
               <img src={clothingItem.image} alt={clothingItem.name} className="w-full h-full object-cover" />
@@ -99,8 +99,8 @@ export const Shop = () => {
       };
     
       return (
-        <div className='h-[50vh]'>
-          <div className={darkMode ? 'bg-gray-900 text-white grid lg:grid-cols-4 md:grid-cols-2 gap-4' : 'bg-white text-gray-900 grid lg:grid-cols-4 md:grid-cols-2 gap-4'}>
+        <div className=''>
+          <div className={darkMode ? 'bg-gray-900 text-white grid lg:grid-cols-4 md:grid-cols-2 gap-4 ': 'bg-white text-gray-900 grid lg:grid-cols-4 md:grid-cols-2 gap-4'}>
             {currentItems.map((clothingItem, index) => (
               <ClothesCard key={index} clothingItem={clothingItem} />
             ))}
@@ -168,8 +168,8 @@ export const Shop = () => {
         },
       };
   return (
-    <div className=''>
-    <div className={darkMode ? 'bg-gray-900 text-white lg:flex  w-full h-screen ' : 'bg-white text-gray-900 lg:flex  w-full '}>
+    <div>
+    <div className={darkMode ? 'bg-gray-900 text-white lg:flex  w-full h-[125vh] lg:overflow-x-scroll' : 'bg-white text-gray-900 lg:flex  w-full h-[125vh] lg:overflow-x-scroll'}>
       <div className="lg:w-1/4 p-4 flex flex-col lg:flex lg:flex-col lg:justify-center lg:items-center lg:space-y-3 relative">
         <h1 className='lg:text-2xl font-semibold underline'>Filter by</h1>
         <ul className='lg:space-y-3'>
