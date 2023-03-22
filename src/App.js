@@ -12,11 +12,11 @@ import { Register } from "./component/Register";
 function App() {
 
   const [darkMode, setDarkMode] = useState(false);
+  const [showCart, setShowCart] = useState(false);
   const [itemsNumber,setItemNumber]=useState(0);
-  const [totalPrice,setTotalPrice]=useState(0);
   return (
     <Router>
-      <ThemeContext.Provider value={{ darkMode, setDarkMode ,itemsNumber,setItemNumber,totalPrice,setTotalPrice}}>
+      <ThemeContext.Provider value={{ darkMode, setDarkMode ,itemsNumber,setItemNumber,showCart, setShowCart}}>
               <div
               className={darkMode ? 'bg-gray-900 text-white h-[100vh]' : 'bg-white text-gray-900 h-[100vh]'}
               >

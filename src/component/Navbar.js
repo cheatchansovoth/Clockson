@@ -12,14 +12,7 @@ export const Navbar = () => {
     
     const [show, setShow] = useState(false);
     const navigate = useNavigate();
-    // const getCart=localStorage.getItem('itemsPrice');
-    // var totalPrice=0;
-    // let cartItems = [];
-    // if (getCart) {
-    //   cartItems = JSON.parse(getCart);
-    // } else {
-    //   localStorage.setItem('itemsPrice', JSON.stringify(cartItems));
-    // }
+    const getCart=localStorage.getItem('itemsPrice');
     const OnClickHandle=()=>
     {
       navigate('/');
@@ -31,9 +24,9 @@ export const Navbar = () => {
     const toggleShow = () => {
       setShow(!show);
     };
-    // totalPrice=cartItems.reduce((a,v) =>  a = a + v.Price , 0 );
     const { darkMode, setDarkMode } = useContext(ThemeContext);
     const { itemsNumber,setItemNumber} = useContext(ThemeContext);
+    const { showCart, setShowCart} = useContext(ThemeContext);
   return (
             <div
             className={darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}
@@ -70,15 +63,14 @@ export const Navbar = () => {
                     <div className='lg:flex-row lg:justify-end lg:space-x-5 lg:space-y-0 lg:w-[10%] lg: mr-[10%] hidden lg:flex'>
                         <div className='w-[20%] flex justify-center items-center space-x-4'>
                         <span className="badge badge-sm indicator-item">{itemsNumber}</span>
-                        <p className='text-2xl '><AiOutlineShoppingCart/></p>
-                        <a href='#' className='font-bold'>${0}</a>
+                        <p className='text-2xl ' onClick={()=>setShowCart(!showCart)}><AiOutlineShoppingCart/></p>
                         <p className='text-2xl' onClick={() => setDarkMode(!darkMode)}><MdDarkMode/></p>
                         <p className='text-2xl cursor-pointer' onClick={OnClickProfile}><BsFillPersonFill/></p>
                         </div>
                     </div>
                     <div className='flex items-center justify-center lg:hidden'>
-                        <p className='text-2xl'><AiOutlineShoppingCart/></p>
-                        <a href='#' className='font-bold'>${0}</a>
+                        <p className='text-2xl' onClick={()=>setShowCart(!showCart)}><AiOutlineShoppingCart/></p>
+
                         <p className='text-2xl' onClick={OnClickProfile}><BsFillPersonFill/></p>
                     </div>
                     <p className='text-2xl lg:hidden'  onClick={() => setDarkMode(!darkMode)}><MdDarkMode/></p>
