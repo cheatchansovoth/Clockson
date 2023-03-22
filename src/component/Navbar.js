@@ -85,11 +85,11 @@ export const Navbar = () => {
                 </motion.div>
                  {show && 
                  (
-                    <div className='flex flex-col h-[200px] items-center space-y-3 justify-center lg:flex-row lg:justify-end lg:space-x-5 lg:space-y-0 lg:w-[70%] lg:mr-[10%] lg:flex lg:hidden'
+                    <motion.div className='flex flex-col h-[200px] items-center space-y-3 justify-center lg:flex-row lg:justify-end lg:space-x-5 lg:space-y-0 lg:w-[70%] lg:mr-[10%] lg:flex lg:hidden'
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{
-                      duration: 0.3,
+                      duration: 3,
                       delay: 0.1,
                       ease: [0, 0.71, 0.2, 1.01]
                     }}
@@ -99,7 +99,7 @@ export const Navbar = () => {
                     <Link to='#' className='text-slate-400 font-semibold'>Pages</Link>
                     <Link to='#' className='text-slate-400 font-semibold'>Blog</Link>
                     <Link to='#' className='text-slate-400 font-semibold'>Contact</Link>
-                    </div>
+                    </motion.div>
                 )
                 }
             </div>

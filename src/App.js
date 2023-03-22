@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Center } from "./component/Center";
 import { Shop } from "./component/Shop";
 import { Login } from "./component/Login";
+import { Register } from "./component/Register";
 
 function App() {
 
@@ -61,6 +62,20 @@ function App() {
                 exit={{ opacity: 0 }}
               >
                 <Login />
+              </motion.div>
+            }
+          />
+                              <Route
+            path='/register'
+            exact
+            element={
+              <motion.div
+                key='register'
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <Register />
               </motion.div>
             }
           />
