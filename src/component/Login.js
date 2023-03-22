@@ -52,7 +52,7 @@ export const Login = () => {
                 {
                     setPassword(event.target.value)
                 }}></input><br/>
-                <button className='bg-slate-400 rounded-2xl font-bold py-2 border-black border-2 hover:bg-black hover:text-white duration-500 ease-in' type='submit' onClick={SignIn
+                <button className='bg-slate-400 rounded-2xl font-bold py-2 border-black border-2 hover:bg-black hover:text-white duration-500 ease-in lg:w-2/4 lg:mx-auto' type='submit' onClick={SignIn
                 }>Login</button><br/>
                 {/* <button type='submit' onClick={SignInWithGoogle}><BsGoogle/></button> */}
                 <Link to='/register' className='text-blue-700 cursor-pointer hover:text-blue-900'>Register</Link>
