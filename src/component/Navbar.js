@@ -31,7 +31,6 @@ export const Navbar = () => {
     const toggleShow = () => {
       setShow(!show);
     };
-    // totalPrice=cartItems.reduce((a,v) =>  a = a + v.Price , 0 );
     const { darkMode, setDarkMode } = useContext(ThemeContext);
     const { itemsNumber,setItemNumber} = useContext(ThemeContext);
   return (
