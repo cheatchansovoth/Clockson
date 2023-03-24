@@ -3,7 +3,9 @@ import { motion } from 'framer-motion';
 import ThemeContext from './ThemeContext';
 import { GrFormNext,GrFormPrevious } from "react-icons/gr";
 import clothes from './clothes.json';
+import ItemPreview from './ItemPreview';
 export const Shop = () => {
+   const { showCart, setShowCart} = useContext(ThemeContext);
     const [showColors, setShowColors] = useState(false);
     const [plusMinus, setPlusMinus] = useState('+');
     const [plusMinusSize, setPlusMinusSize] = useState('+');
@@ -16,12 +18,16 @@ export const Shop = () => {
     const itemsPerPage = 8;
     const filteredClothes = selectedColor ? clothes.filter(item => item.color === selectedColor) : clothes;
     const [sortBy, setSortBy] = useState('newest');
-
+    let totalPrice=cartItems.reduce((a,v) =>  a = a + v.price , 0 );
     const handleSortByChange = (e) => { // event handler for updating sortBy state
       setSortBy(e.target.value);
       setCurrentPage(1); // reset current page when sorting changes
     }
-
+    const removeProduct = (productToRemove) => {
+      setCartItems(prevCartItems =>
+        prevCartItems.filter(product => product.cartId !== productToRemove.cartId)
+      );
+    }
     const sortedClothes = useMemo(() => { // sort clothes based on sortBy state
       switch (sortBy) {
         case 'lowtohigh':
@@ -43,18 +49,24 @@ export const Shop = () => {
         setSelectedColor(color === 'reset' ? defaultColor : color);
         setCurrentPage(1);
       };
-    const AddProduct=(product)=>
-    {
-      setCartItems([...cartItems,{...product}]);
-      setItemNumber(cartItems.length)
-      window.localStorage.setItem('itemsPrice',JSON.stringify(cartItems));
-    }
+      const AddProduct=(product)=>
+      {
+        const cartId = Date.now().toString(); // generate a unique ID for the cart item
+        const item = { ...product, cartId }; // add the ID to the product
+        setCartItems(prevCartItems => [...prevCartItems,{...item}]);
+      }
+      
+      useEffect(() => {
+        setItemNumber(cartItems.length);
+        window.localStorage.setItem('itemsPrice', JSON.stringify(cartItems));
+        console.log(showCart);
+      }, [cartItems]);
+      
     const handleToggleColors = () => {
       setShowColors(!showColors);
       setPlusMinus(showColors ? '+' : '-');
     };
     function ClothesCard({ clothingItem }) {
-      
       return (
         <div className="w-full lg:w-full md:w-1/2 p-4 ">
           <div className={darkMode ? 'bg-gray-900 text-white rounded-lg overflow-hidden shadow-lg' : 'bg-white text-gray-900 rounded-lg overflow-hidden shadow-lg'}>
@@ -73,7 +85,10 @@ export const Shop = () => {
                       : `bg-${clothingItem.color}-500`
                 }`}
               ></p><br/>
+              <div className='space-x-3 sm:space-x-0'>
+               <ItemPreview item={clothingItem} />
               <button onClick={()=>AddProduct(clothingItem)} className="bg-blue-500 text-white px-4 py-2 rounded mt-2">Add to Cart</button>
+              </div>
             </div>
           </div>
         </div>
@@ -263,28 +278,54 @@ export const Shop = () => {
 
         </ul>
       </div>
-      <div className={darkMode ? 'bg-gray-900 text-white flex lg:w-[60%] w-[100%] text-center' : 'bg-white text-gray-900 flex lg:w-[60%] w-[100%] text-center'}>
-        <div className="flex-1 lg:p-4 ">
-        <div className='flex flex-col'>
-      <h1 className='text-3xl font-bold'>Shop</h1>
-        <select
-          className={darkMode ? 'bg-gray-900 text-white w-1/5 ml-auto border-black' : 'bg-white text-gray-900 w-1/5 ml-auto border-black'}
-          value={sortBy}
-          onChange={handleSortByChange}
-        >
-          <option value="newest">Newest</option>
-          <option value="lowtohigh">Price (low to high)</option>
-          <option value="hightolow">Price (high to low)</option>
-          <option value="az">Name A-Z</option>
-          <option value="za">Name Z-A</option>
-        </select>
-    </div>
+          <div className={darkMode ? 'bg-gray-900 text-white flex lg:w-[60%] w-[100%] text-center' : 'bg-white text-gray-900 flex lg:w-[60%] w-[100%] text-center'}>
+            <div className="flex-1 lg:p-4 ">
+            <div className='flex flex-col'>
+          <h1 className='text-3xl font-bold'>Shop</h1>
+            <select
+              className={darkMode ? 'bg-gray-900 text-white w-1/5 ml-auto border-black' : 'bg-white text-gray-900 w-1/5 ml-auto border-black'}
+              value={sortBy}
+              onChange={handleSortByChange}
+            >
+              <option value="newest">Newest</option>
+              <option value="lowtohigh">Price (low to high)</option>
+              <option value="hightolow">Price (high to low)</option>
+              <option value="az">Name A-Z</option>
+              <option value="za">Name Z-A</option>
+            </select>
+        </div>
 
-        <div>
-        <ClothesList clothes={clothes} />
-        </div>
-        </div>
-        </div>
+            <div>
+            <ClothesList clothes={clothes} />
+            </div>
+            </div>
+          </div>
+          {showCart && 
+          (
+            <motion.div className="space-y-5 "
+            initial={{ opacity: 0, scale: 0.5 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{
+              duration:0.5
+            }}>
+            <h2>Shopping Cart</h2>
+            <ul className="cart-items space-y-4">
+              {cartItems.map((item) => (
+                <div className='flex space-x-3'>
+                  <img src={item.image} alt={item.name} className='h-[5vh] w-[20%]'></img>
+                  <div className='flex flex-col space-y-1'>
+                  <p className='font-bold'>{item.name}</p>
+                  <p className='font-semibold'>{item.price}</p>
+                  <p className='bg-red-500 text-center rounded-2xl py-1' onClick={()=>removeProduct(item)}>Remove</p>
+                  </div>
+                </div>
+              ))}
+            </ul>
+            <p className='font-semibold'>Subtotal:${totalPrice}</p>
+            <button className="bg-blue-500 text-white px-4 py-2 rounded mt-2">Checkout</button>
+          </motion.div>
+            )
+            }
     </div>
     </div>
   )

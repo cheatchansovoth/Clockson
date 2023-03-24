@@ -12,14 +12,7 @@ export const Navbar = () => {
     
     const [show, setShow] = useState(false);
     const navigate = useNavigate();
-    // const getCart=localStorage.getItem('itemsPrice');
-    // var totalPrice=0;
-    // let cartItems = [];
-    // if (getCart) {
-    //   cartItems = JSON.parse(getCart);
-    // } else {
-    //   localStorage.setItem('itemsPrice', JSON.stringify(cartItems));
-    // }
+    const getCart=localStorage.getItem('itemsPrice');
     const OnClickHandle=()=>
     {
       navigate('/');
@@ -33,6 +26,7 @@ export const Navbar = () => {
     };
     const { darkMode, setDarkMode } = useContext(ThemeContext);
     const { itemsNumber,setItemNumber} = useContext(ThemeContext);
+    const { showCart, setShowCart} = useContext(ThemeContext);
   return (
             <div
             className={darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}
@@ -69,26 +63,25 @@ export const Navbar = () => {
                     <div className='lg:flex-row lg:justify-end lg:space-x-5 lg:space-y-0 lg:w-[10%] lg: mr-[10%] hidden lg:flex'>
                         <div className='w-[20%] flex justify-center items-center space-x-4'>
                         <span className="badge badge-sm indicator-item">{itemsNumber}</span>
-                        <p className='text-2xl '><AiOutlineShoppingCart/></p>
-                        <a href='#' className='font-bold'>${0}</a>
+                        <p className='text-2xl ' onClick={()=>setShowCart(!showCart)}><AiOutlineShoppingCart/></p>
                         <p className='text-2xl' onClick={() => setDarkMode(!darkMode)}><MdDarkMode/></p>
                         <p className='text-2xl cursor-pointer' onClick={OnClickProfile}><BsFillPersonFill/></p>
                         </div>
                     </div>
                     <div className='flex items-center justify-center lg:hidden'>
-                        <p className='text-2xl'><AiOutlineShoppingCart/></p>
-                        <a href='#' className='font-bold'>${0}</a>
+                        <p className='text-2xl' onClick={()=>setShowCart(!showCart)}><AiOutlineShoppingCart/></p>
+
                         <p className='text-2xl' onClick={OnClickProfile}><BsFillPersonFill/></p>
                     </div>
                     <p className='text-2xl lg:hidden'  onClick={() => setDarkMode(!darkMode)}><MdDarkMode/></p>
                 </motion.div>
                  {show && 
                  (
-                    <div className='flex flex-col h-[200px] items-center space-y-3 justify-center lg:flex-row lg:justify-end lg:space-x-5 lg:space-y-0 lg:w-[70%] lg:mr-[10%] lg:flex lg:hidden'
+                    <motion.div className='flex flex-col h-[200px] items-center space-y-3 justify-center lg:flex-row lg:justify-end lg:space-x-5 lg:space-y-0 lg:w-[70%] lg:mr-[10%] lg:flex lg:hidden'
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{
-                      duration: 0.3,
+                      duration: 3,
                       delay: 0.1,
                       ease: [0, 0.71, 0.2, 1.01]
                     }}
@@ -98,7 +91,7 @@ export const Navbar = () => {
                     <Link to='#' className='text-slate-400 font-semibold'>Pages</Link>
                     <Link to='#' className='text-slate-400 font-semibold'>Blog</Link>
                     <Link to='#' className='text-slate-400 font-semibold'>Contact</Link>
-                    </div>
+                    </motion.div>
                 )
                 }
             </div>
