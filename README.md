@@ -17,15 +17,12 @@ To use the website, follow these steps:
 
     Create an account or log in using an existing account.
     Browse the products and add items to your shopping cart.
-    Proceed to checkout and enter your shipping and payment information.
-    Confirm your order and receive a confirmation email.
 
 # Features
 
     User authentication using Firebase Authentication
     Shopping cart functionality using React Context API
     Product search and filtering
-    Order processing using Firebase Cloud Functions
 
 # Project Structure
 
