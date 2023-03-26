@@ -8,6 +8,7 @@ import { Center } from "./component/Center";
 import { Shop } from "./component/Shop";
 import { Login } from "./component/Login";
 import { Register } from "./component/Register";
+import { Resetpassword } from "./component/Resetpassword";
 
 function App() {
 
@@ -65,7 +66,7 @@ function App() {
               </motion.div>
             }
           />
-                              <Route
+           <Route
             path='/register'
             exact
             element={
@@ -76,6 +77,20 @@ function App() {
                 exit={{ opacity: 0 }}
               >
                 <Register />
+              </motion.div>
+            }
+          />
+          <Route
+            path='/resetpassword'
+            exact
+            element={
+              <motion.div
+                key='resetpassword'
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <Resetpassword />
               </motion.div>
             }
           />

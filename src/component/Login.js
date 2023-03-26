@@ -2,7 +2,6 @@ import React from 'react'
 import {auth,GoogleAuth} from '../component/firebase';
 import {signInWithEmailAndPassword,signInWithPopup,signOut} from 'firebase/auth'
 import { useState } from 'react';
-import { useEffect } from 'react';
 import { BsGoogle,BsFacebook,BsTwitter} from "react-icons/bs";
 import { Link,useNavigate } from 'react-router-dom';
 export const Login = () => {
@@ -53,8 +52,9 @@ export const Login = () => {
                     setPassword(event.target.value)
                 }}></input><br/>
                 <button className='bg-slate-400 rounded-2xl font-bold py-2 border-black border-2 hover:bg-black hover:text-white duration-500 ease-in lg:w-2/4 lg:mx-auto' type='submit' onClick={SignIn
-                }>Login</button><br/>
+                }>Login</button>
                 <p className='text-red-600 ease-in duration-500'>{Error}</p>
+                <Link to='/resetpassword' className='text-blue-700 cursor-pointer hover:text-blue-900'>Forget password ?</Link>
                 <Link to='/register' className='text-blue-700 cursor-pointer hover:text-blue-900'>Register</Link>
                 <div className='flex flex-row items-center justify-center space-x-5'>
                 <p className='text-2xl cursor-pointer' onClick={SignInWithGoogle}><BsGoogle/></p>
