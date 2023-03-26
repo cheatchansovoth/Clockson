@@ -1,17 +1,17 @@
-#Basic E-commerce Website
+# Basic E-commerce Website
 
 This is a basic e-commerce website that allows users to view and purchase products online. It is built using React and Firebase, and includes features such as user authentication, shopping cart functionality, and product search.
 Installation
 
-To install and run the project, follow these steps:
+# To install and run the project, follow these steps:
 
     Clone the repository to your local machine.
     Install the dependencies using npm install.
     Modify the Firebase configuration in src/firebase.js to match your own Firebase project.
     Run the project using npm start.
 
-The project should now be running on localhost:3000.
-Usage
+# The project should now be running on localhost:3000.
+# Usage
 
 To use the website, follow these steps:
 
@@ -20,16 +20,16 @@ To use the website, follow these steps:
     Proceed to checkout and enter your shipping and payment information.
     Confirm your order and receive a confirmation email.
 
-Features
+# Features
 
     User authentication using Firebase Authentication
     Shopping cart functionality using React Context API
     Product search and filtering
     Order processing using Firebase Cloud Functions
 
-Project Structure
+# Project Structure
 
-The project is organized as follows:
+# The project is organized as follows:
 
     public/ contains the HTML template and other static assets
     src/ contains the React components, Firebase configuration, and other JavaScript code
