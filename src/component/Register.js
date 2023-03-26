@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import {auth} from '../component/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 export const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
+  const navigator=useNavigate();
   const handleRegister=async (e)=>
   {
     e.preventDefault();
@@ -14,13 +15,19 @@ export const Register = () => {
     {
       await createUserWithEmailAndPassword(auth,email,password)
       .then((authUser)=>{
-        authUser.user.updateProfile({
-          displayName:name
-        })
-        alert('User Created');
+        localStorage.setItem('__userinfo',JSON.stringify(authUser));
+        alert('welcome to the shop');
+        navigator('/shop');
       })
       .catch((error)=>{
-        alert(error.message);
+        if(error.code==='auth/email-already-in-use')
+        {
+        alert('Email already in use');
+        }
+        else
+        {
+          console.log(error);
+        }
       })
     }
     else 

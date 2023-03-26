@@ -1,19 +1,29 @@
 import React from 'react'
 import {auth,GoogleAuth} from '../component/firebase';
-import {createUserWithEmailAndPassword,signInWithPopup,signOut} from 'firebase/auth'
+import {signInWithEmailAndPassword,signInWithPopup,signOut} from 'firebase/auth'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { BsGoogle,BsFacebook,BsTwitter} from "react-icons/bs";
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 export const Login = () => {
+
+  const navigate=useNavigate();
+  const [Error,setError]=useState("");
     const SignIn= async ()=>
     {
       try{
-      await createUserWithEmailAndPassword(auth,email,password);
+         await signInWithEmailAndPassword(auth,email,password);
+         const user=auth.currentUser;
+         console.log(user);
+         if(user)
+         {
+          localStorage.setItem('__userinfo',JSON.stringify(user));
+          navigate('/shop');
+         }
       }
       catch(err)
       {
-        console.error(err);
+        setError('Invalid Credentials');
       }
     };
     const SignInWithGoogle= async ()=>
@@ -23,19 +33,9 @@ export const Login = () => {
       }
       catch(err)
       {
-        console.error(err);
+        setError('Invalid Credentials');
       }
     };
-    const Logout= async ()=>
-    {
-      try{
-        await signOut(auth);
-        }
-        catch(err)
-        {
-          console.error(err);
-        }
-    }
 
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
@@ -54,7 +54,7 @@ export const Login = () => {
                 }}></input><br/>
                 <button className='bg-slate-400 rounded-2xl font-bold py-2 border-black border-2 hover:bg-black hover:text-white duration-500 ease-in lg:w-2/4 lg:mx-auto' type='submit' onClick={SignIn
                 }>Login</button><br/>
-                {/* <button type='submit' onClick={SignInWithGoogle}><BsGoogle/></button> */}
+                <p className='text-red-600 ease-in duration-500'>{Error}</p>
                 <Link to='/register' className='text-blue-700 cursor-pointer hover:text-blue-900'>Register</Link>
                 <div className='flex flex-row items-center justify-center space-x-5'>
                 <p className='text-2xl cursor-pointer' onClick={SignInWithGoogle}><BsGoogle/></p>

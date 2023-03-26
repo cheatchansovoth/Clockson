@@ -6,13 +6,24 @@ import { BsFillPersonFill } from "react-icons/bs";
 import { MdDarkMode } from "react-icons/md";
 import ThemeContext from './ThemeContext';
 import { Link,useNavigate   } from 'react-router-dom';
+import {auth} from '../component/firebase';
+import { signOut } from 'firebase/auth';
 
 export const Navbar = () => {
 
     
     const [show, setShow] = useState(false);
     const navigate = useNavigate();
-    const getCart=localStorage.getItem('itemsPrice');
+    const getUser=localStorage.getItem('__userinfo');
+    const SignOut = async () => {
+      try {
+        localStorage.removeItem('__userinfo');
+        await signOut(auth);
+        navigate('/');
+      } catch (err) {
+        console.error(err);
+      }
+    };
     const OnClickHandle=()=>
     {
       navigate('/');
@@ -65,7 +76,11 @@ export const Navbar = () => {
                         <span className="badge badge-sm indicator-item">{itemsNumber}</span>
                         <p className='text-2xl ' onClick={()=>setShowCart(!showCart)}><AiOutlineShoppingCart/></p>
                         <p className='text-2xl' onClick={() => setDarkMode(!darkMode)}><MdDarkMode/></p>
-                        <p className='text-2xl cursor-pointer' onClick={OnClickProfile}><BsFillPersonFill/></p>
+                        {getUser ? (
+                            <p onClick={SignOut} className='cursor-pointer'>Logout</p>
+                          ) : (
+                            <p className='text-2xl' onClick={OnClickProfile}><BsFillPersonFill/></p>
+                          )}
                         </div>
                     </div>
                     <div className='flex items-center justify-center lg:hidden'>
