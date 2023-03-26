@@ -1,4 +1,4 @@
-Basic E-commerce Website
+#Basic E-commerce Website
 
 This is a basic e-commerce website that allows users to view and purchase products online. It is built using React and Firebase, and includes features such as user authentication, shopping cart functionality, and product search.
 Installation
