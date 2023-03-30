@@ -302,25 +302,28 @@ export const Shop = () => {
           </div>
           {showCart && 
           (
-            <motion.div className="space-y-5 "
+          <motion.div className="absolute top-[15%] sm:right-[25%] w-2/2 lg:w-1/2 bg-gray-700"
             initial={{ opacity: 0, scale: 0.5 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{
               duration:0.5
             }}>
-            <h2>Shopping Cart</h2>
-            <ul className="cart-items space-y-4">
+              <div className='flex justify-end w-[100%]'>
+              <span className='text-2xl cursor-pointer' onClick={()=>{setShowCart(false)}}>X</span>
+              </div>
+             <h2 className='text-2xl font-semibold'>Shopping Cart</h2>
+            <div className='flex flex-col'>
               {cartItems.map((item) => (
-                <div className='flex space-x-3'>
-                  <img src={item.image} alt={item.name} className='h-[5vh] w-[20%]'></img>
-                  <div className='flex flex-col space-y-1'>
+                <div className='flex '>
+                  <img src={item.image} alt={item.name} className='h-[15vh] w-[20%]'></img>
+                  <div className='flex flex-col '>
                   <p className='font-bold'>{item.name}</p>
                   <p className='font-semibold'>{item.price}</p>
                   <p className='bg-red-500 text-center rounded-2xl py-1' onClick={()=>removeProduct(item)}>Remove</p>
                   </div>
                 </div>
               ))}
-            </ul>
+              </div>
             <p className='font-semibold'>Subtotal:${totalPrice}</p>
             <button className="bg-blue-500 text-white px-4 py-2 rounded mt-2">Checkout</button>
           </motion.div>
