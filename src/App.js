@@ -9,6 +9,7 @@ import { Shop } from "./component/Shop";
 import { Login } from "./component/Login";
 import { Register } from "./component/Register";
 import { Resetpassword } from "./component/Resetpassword";
+import { PreItem } from "./component/PreItem";
 
 function App() {
 
@@ -94,7 +95,22 @@ function App() {
               </motion.div>
             }
           />
+                    <Route
+            path='/shop/:id'
+            exact
+            element={
+              <motion.div
+                key='PreItem'
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <PreItem />
+              </motion.div>
+            }
+          />
         </Routes>
+        
         </AnimatePresence>
       </div>
       </ThemeContext.Provider>

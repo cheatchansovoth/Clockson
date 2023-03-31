@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import ThemeContext from './ThemeContext';
 import { GrFormNext,GrFormPrevious } from "react-icons/gr";
 import clothes from './clothes.json';
-import ItemPreview from './ItemPreview';
+import { useNavigate } from 'react-router-dom';
 export const Shop = () => {
    const { showCart, setShowCart} = useContext(ThemeContext);
     const [showColors, setShowColors] = useState(false);
@@ -18,6 +18,7 @@ export const Shop = () => {
     const itemsPerPage = 8;
     const filteredClothes = selectedColor ? clothes.filter(item => item.color === selectedColor) : clothes;
     const [sortBy, setSortBy] = useState('newest');
+    const navigate = useNavigate();
     let totalPrice=cartItems.reduce((a,v) =>  a = a + v.price , 0 );
     const handleSortByChange = (e) => { // event handler for updating sortBy state
       setSortBy(e.target.value);
@@ -59,7 +60,6 @@ export const Shop = () => {
       useEffect(() => {
         setItemNumber(cartItems.length);
         window.localStorage.setItem('itemsPrice', JSON.stringify(cartItems));
-        console.log(showCart);
       }, [cartItems]);
       
     const handleToggleColors = () => {
@@ -71,7 +71,7 @@ export const Shop = () => {
         <div className="w-full lg:w-full md:w-1/2 p-4 ">
           <div className={darkMode ? 'bg-gray-900 text-white rounded-lg overflow-hidden shadow-lg' : 'bg-white text-gray-900 rounded-lg overflow-hidden shadow-lg'}>
             <div className="w-full lg:h-[20vh] bg-gray-200">
-              <img src={clothingItem.image} alt={clothingItem.name} className="w-full h-full object-cover" />
+              <img src={clothingItem.image} alt={clothingItem.name} className="w-full h-full object-cover hover:scale-125 duration-500" onClick={() => navigate('/shop/' + clothingItem.productID)} />
             </div>
             <div className="p-4">
               <h3 className="text-lg font-medium">{clothingItem.name}</h3>
@@ -86,8 +86,7 @@ export const Shop = () => {
                 }`}
               ></p><br/>
               <div className='space-x-3 sm:space-x-0'>
-               <ItemPreview item={clothingItem} />
-              <button onClick={()=>AddProduct(clothingItem)} className="bg-blue-500 text-white px-4 py-2 rounded mt-2">Add to Cart</button>
+              <button onClick={()=>AddProduct(clothingItem)} className="bg-slate-700 text-white px-4 py-2 rounded mt-2 hover:bg-slate-600">Add To Cart</button>
               </div>
             </div>
           </div>
@@ -184,10 +183,14 @@ export const Shop = () => {
       };
   return (
     <div>
-    <div className={darkMode ? 'bg-gray-900 text-white lg:flex  w-full h-[125vh] lg:overflow-x-scroll' : 'bg-white text-gray-900 lg:flex  w-full h-[125vh] lg:overflow-x-scroll'}>
-      <div className="lg:w-1/4 p-4 flex flex-col lg:flex lg:flex-col lg:justify-center lg:items-center lg:space-y-3 relative">
-        <h1 className='lg:text-2xl font-semibold underline'>Filter by</h1>
-        <ul className='lg:space-y-3'>
+    <div className={darkMode ? 'bg-gray-900 text-white lg:flex  w-full lg:overflow-x-scroll' : 'bg-white text-gray-900 lg:flex  w-full lg:overflow-x-scroll'}>
+          <div className={darkMode ? 'bg-gray-900 text-white flex lg:w-[60%] w-[100%] text-center mx-auto' : 'bg-white text-gray-900 mx-auto flex lg:w-[60%] w-[100%] text-center'}>
+            <div className="flex-1 lg:p-4 ">
+          <div className='flex flex-col'>
+          <h1 className='text-3xl font-bold'>Shop</h1>
+          <div className='mr-auto w-2/5'>
+          <h1 className='lg:text-2xl font-semibold underline text-left'>Filter by</h1>
+         <ul className='lg:space-y-3'>
             <motion.li  onClick={handleToggleColors}
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
@@ -195,7 +198,7 @@ export const Shop = () => {
                     style={{ display: 'flex', alignItems: 'center' }}
             >Color {plusMinus}</motion.li>
                 {showColors && (
-                    <motion.div className="flex justify-center items-center mt-4"
+                    <motion.div className="flex justify-start items-start mt-4 w-screen lg:w-1/2"
                     variants={containerVariants}
                     initial="hidden"
                     animate={showColors ? 'visible' : 'hidden'}>
@@ -229,59 +232,9 @@ export const Shop = () => {
                     </motion.span>
                     </motion.div>
             )}
-        <motion.li 
-        onClick={handleToggleLabels}
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
-        style={{ display: 'flex', alignItems: 'center' }}>Size{plusMinusSize}</motion.li>
-        {showLabels && (
-        <div className="flex justify-center items-center mt-4">
-          <motion.span
-            className="text-xs font-semibold bg-gray-300 rounded-full px-2 py-1 mx-2"
-            variants={labelVariants}
-            initial="hidden"
-            animate="visible"
-            transition={{ duration: 0.5 }}
-          >
-            XS
-          </motion.span>
-          <motion.span
-            className="text-xs font-semibold bg-gray-300 rounded-full px-2 py-1 mx-2"
-            variants={labelVariants}
-            initial="hidden"
-            animate="visible"
-            transition={{ duration: 0.6 }}
-          >
-            X
-          </motion.span>
-          <motion.span
-            className="text-xs font-semibold bg-gray-300 rounded-full px-2 py-1 mx-2"
-            variants={labelVariants}
-            initial="hidden"
-            animate="visible"
-            transition={{ duration: 0.7 }}
-          >
-            L
-          </motion.span>
-          <motion.span
-            className="text-xs font-semibold bg-gray-300 rounded-full px-2 py-1 mx-2"
-            variants={labelVariants}
-            initial="hidden"
-            animate="visible"
-            transition={{ duration: 0.8 }}
-          >
-            XL
-          </motion.span>
-        </div>
-      )}
 
         </ul>
-      </div>
-          <div className={darkMode ? 'bg-gray-900 text-white flex lg:w-[60%] w-[100%] text-center' : 'bg-white text-gray-900 flex lg:w-[60%] w-[100%] text-center'}>
-            <div className="flex-1 lg:p-4 ">
-            <div className='flex flex-col'>
-          <h1 className='text-3xl font-bold'>Shop</h1>
+          </div>
             <select
               className={darkMode ? 'bg-gray-900 text-white w-1/5 ml-auto border-black' : 'bg-white text-gray-900 w-1/5 ml-auto border-black'}
               value={sortBy}
@@ -300,35 +253,6 @@ export const Shop = () => {
             </div>
             </div>
           </div>
-          {showCart && 
-          (
-          <motion.div className="absolute top-[15%] sm:right-[25%] w-2/2 lg:w-1/2 bg-gray-700"
-            initial={{ opacity: 0, scale: 0.5 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{
-              duration:0.5
-            }}>
-              <div className='flex justify-end w-[100%]'>
-              <span className='text-2xl cursor-pointer' onClick={()=>{setShowCart(false)}}>X</span>
-              </div>
-             <h2 className='text-2xl font-semibold'>Shopping Cart</h2>
-            <div className='flex flex-col'>
-              {cartItems.map((item) => (
-                <div className='flex '>
-                  <img src={item.image} alt={item.name} className='h-[15vh] w-[20%]'></img>
-                  <div className='flex flex-col '>
-                  <p className='font-bold'>{item.name}</p>
-                  <p className='font-semibold'>{item.price}</p>
-                  <p className='bg-red-500 text-center rounded-2xl py-1' onClick={()=>removeProduct(item)}>Remove</p>
-                  </div>
-                </div>
-              ))}
-              </div>
-            <p className='font-semibold'>Subtotal:${totalPrice}</p>
-            <button className="bg-blue-500 text-white px-4 py-2 rounded mt-2">Checkout</button>
-          </motion.div>
-            )
-            }
     </div>
     </div>
   )
