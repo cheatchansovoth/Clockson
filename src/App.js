@@ -10,6 +10,7 @@ import { Login } from "./component/Login";
 import { Register } from "./component/Register";
 import { Resetpassword } from "./component/Resetpassword";
 import { PreItem } from "./component/PreItem";
+import { MobileCart } from "./component/MobileCart";
 
 function App() {
 
@@ -105,7 +106,7 @@ function App() {
               </motion.div>
             }
           />
-                    <Route
+           <Route
             path='/shop/:id'
             exact
             element={
@@ -116,6 +117,20 @@ function App() {
                 exit={{ opacity: 0 }}
               >
                 <PreItem />
+              </motion.div>
+            }
+          />
+                     <Route
+            path='/shop/mobilecart'
+            exact
+            element={
+              <motion.div
+                key='MobileCart'
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <MobileCart cart={cart}/>
               </motion.div>
             }
           />
