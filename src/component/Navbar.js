@@ -9,12 +9,13 @@ import { Link,useNavigate   } from 'react-router-dom';
 import {auth} from '../component/firebase';
 import { signOut } from 'firebase/auth';
 
-export const Navbar = () => {
+export const Navbar = ({cart}) => {
 
     
     const [show, setShow] = useState(false);
     const navigate = useNavigate();
     const getUser=localStorage.getItem('__userinfo');
+    const {removeItem} = useContext(ThemeContext);
     const SignOut = async () => {
       try {
         localStorage.removeItem('__userinfo');
@@ -24,6 +25,11 @@ export const Navbar = () => {
         console.error(err);
       }
     };
+    const [showCart,setShowCart]=useState(false);
+
+    const OnClickCart=()=>{
+      setShowCart(!showCart);
+    }
     const OnClickHandle=()=>
     {
       navigate('/');
@@ -36,8 +42,11 @@ export const Navbar = () => {
       setShow(!show);
     };
     const { darkMode, setDarkMode } = useContext(ThemeContext);
-    const { itemsNumber,setItemNumber} = useContext(ThemeContext);
-    const { showCart, setShowCart} = useContext(ThemeContext);
+    // const { showCart, setShowCart} = useContext(ThemeContext);
+
+    const handleRemoveItem=(item)=>{
+      removeItem(item);
+    }
   return (
             <div
             className={darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}
@@ -73,8 +82,10 @@ export const Navbar = () => {
                     </div>
                     <div className='lg:flex-row lg:justify-end lg:space-x-5 lg:space-y-0 lg:w-[10%] lg: mr-[10%] hidden lg:flex'>
                         <div className='w-[20%] flex justify-center items-center space-x-4'>
-                        <span className="badge badge-sm indicator-item">{itemsNumber}</span>
-                        <p className='text-2xl ' onClick={()=>setShowCart(!showCart)}><AiOutlineShoppingCart/></p>
+                        {cart.length?(
+                          <p>{cart.length}</p>
+                        ):null}
+                        <p className='text-2xl cursor-pointer' onClick={()=>setShowCart(!showCart)}><AiOutlineShoppingCart/></p>
                         <p className='text-2xl' onClick={() => setDarkMode(!darkMode)}><MdDarkMode/></p>
                         {getUser ? (
                             <p onClick={SignOut} className='cursor-pointer'>Logout</p>
@@ -109,6 +120,39 @@ export const Navbar = () => {
                     </motion.div>
                 )
                 }
+                {showCart && (
+                                <div 
+                                className='w-screen absolute z-30 '>
+                                  <div className='w-[80%] mx-auto'>
+                                    <div className='flex justify-end'>
+                                      <motion.div className='w-2/6 xl:w-1/6 min-h-[10vh] bg-slate-800'
+                                                         animate={{
+                                                          opacity: [0, 1],
+                                                          transition: {
+                                                            duration: 0.3,
+                                                          }
+                                                        }}>
+                                      <h1 className='text-xs xl:text-xl text-center underline'>You have {cart.length} in your bucket</h1>
+                                      <div className='w-[80%] mx-auto space-y-1'>
+                                      {cart.map((item=>{
+                                        return(
+                                          <div className='flex flex-row justify-between'>
+                                          <div className='flex'>
+                                            <img src={item.image} alt={item.name} className="w-[30px]"/>
+                                            <p>{item.name}</p>
+                                          </div>
+                                          <p>{item.price}</p>
+                                          <p>{item.quantity}</p>
+                                          <span onClick={()=>handleRemoveItem(item.cartId)} className='cursor-pointer'>X</span>
+                                          </div>
+                                        )
+                                      }))}
+                                      </div>
+                                      </motion.div>
+                                    </div>
+                                  </div>
+                                </div>
+                )}
             </div>
     
   )

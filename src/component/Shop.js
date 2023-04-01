@@ -19,11 +19,16 @@ export const Shop = () => {
     const filteredClothes = selectedColor ? clothes.filter(item => item.color === selectedColor) : clothes;
     const [sortBy, setSortBy] = useState('newest');
     const navigate = useNavigate();
-    let totalPrice=cartItems.reduce((a,v) =>  a = a + v.price , 0 );
     const handleSortByChange = (e) => { // event handler for updating sortBy state
       setSortBy(e.target.value);
       setCurrentPage(1); // reset current page when sorting changes
     }
+    const {addToCart} = useContext(ThemeContext);
+
+    const onClickAddToCart = (item) => {
+        addToCart(item);
+    }
+
     const removeProduct = (productToRemove) => {
       setCartItems(prevCartItems =>
         prevCartItems.filter(product => product.cartId !== productToRemove.cartId)
@@ -86,7 +91,7 @@ export const Shop = () => {
                 }`}
               ></p><br/>
               <div className='space-x-3 sm:space-x-0'>
-              <button onClick={()=>AddProduct(clothingItem)} className="bg-slate-700 text-white px-4 py-2 rounded mt-2 hover:bg-slate-600">Add To Cart</button>
+              <button onClick={()=>onClickAddToCart(clothingItem)} className="bg-slate-700 text-white px-4 py-2 rounded mt-2 hover:bg-slate-600" >Add To Cart</button>
               </div>
             </div>
           </div>
@@ -143,16 +148,7 @@ export const Shop = () => {
       );
     }
     
-    
-
-    const handleToggleLabels = () => {
-        setShowLabels(!showLabels);
-        setPlusMinusSize(showLabels ? '+' : '-');
-      }
-      const labelVariants = {
-        hidden: { opacity: 0, x: -20 },
-        visible: { opacity: 1, x: 0 }
-      };
+  
     const containerVariants = {
         hidden: {
           x: "-100%",

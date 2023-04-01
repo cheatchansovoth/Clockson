@@ -16,13 +16,23 @@ function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [itemsNumber,setItemNumber]=useState(0);
+  const [cart, setCart] = useState([]);
+  const addToCart = (product) => {
+    const cartId = Date.now().toString();
+    const item = { ...product, cartId };
+    setCart(prevCartItems => [...prevCartItems,{...item}]);
+  };
+  const removeItem = (id) => {
+    const updatedCart = cart.filter((item) => item.cartId !== id);
+    setCart(updatedCart);
+  };
   return (
     <Router>
-      <ThemeContext.Provider value={{ darkMode, setDarkMode ,itemsNumber,setItemNumber,showCart, setShowCart}}>
+      <ThemeContext.Provider value={{ darkMode, setDarkMode ,itemsNumber,setItemNumber,showCart, setShowCart,addToCart,removeItem}}>
               <div
               className={darkMode ? 'bg-gray-900 text-white h-[100vh]' : 'bg-white text-gray-900 h-[100vh]'}
               >
-        <Navbar/>
+        <Navbar cart={cart}/>
         <AnimatePresence mode='wait'>
         <Routes>
         <Route

@@ -1,21 +1,28 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import cloth from './clothes.json'
 import { useParams,useNavigate } from 'react-router'
+import ThemeContext from './ThemeContext';
 export const PreItem = () => {
 
     const { id } = useParams();
     const navigate = useNavigate();
-  return (
+    const {addToCart} = useContext(ThemeContext);
+
+    const onClickAddToCart = (item) => {
+        addToCart(item);
+        // console.log(item);
+    }
+    return (
     <div>
         {cloth.
         filter(item => item.productID === Number(id) )
         .map((item, index) => {
             return(
-                <div className='flex flex-col sm:flex-row w-[80%] justify-center mx-auto h-[80vh] mt-[5%] space-x-[5%]'>
+                <div key={index} className='flex flex-col sm:flex-row w-[80%] justify-center mx-auto h-[80vh] mt-[5%] space-x-[5%]'>
                     <div className='h-[20vh] sm:h-[50vh]'>
                     <img src={item.image} alt={item.name} className="w-full h-full object-contain sm:object-cover"/>
                     </div>
-                    <div className='w-1.5/5 space-y-[5%]'>
+                    <div className='w-1.5/5 space-y-[5%] h-[20vh] sm:h-[50vh]'>
                         <p className='font-semibold text-4xl'>{item.name}</p>
                         <p className='font-semibold text-2xl'>${item.price}</p>
                         <div className='flex space-x-3 items-center justify-center'>
@@ -55,11 +62,11 @@ export const PreItem = () => {
                             }).reduce((prev, curr) => [prev, ' ', curr])}
                             </div>
                         </div>
+                        <p className='text-center'>You are $75 away from free shipping</p>  
                         <div className='flex w-full justify-between'>
-                        <button className='bg-slate-500 sm:p-3 px-4 rounded-2xl hover:bg-slate-400 duration-500 ease-in sm:text-xl'>ADD To CART</button>
+                        <button className='bg-slate-500 sm:p-3 px-4 rounded-2xl hover:bg-slate-400 duration-500 ease-in sm:text-xl' onClick={()=>{onClickAddToCart(item)}} >ADD To CART</button>
                         <button className='bg-slate-500 sm:p-3 px-4 rounded-2xl hover:bg-slate-400 duration-500 ease-in sm:text-xl ' onClick={()=>{navigate('/shop')}}>Go Back</button>
                         </div>
-                        <p className='text-center'>You are $75 away from free shipping</p>
                     </div>
                 </div>
             )
