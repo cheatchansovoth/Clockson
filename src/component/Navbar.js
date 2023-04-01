@@ -132,13 +132,13 @@ export const Navbar = ({cart}) => {
                                                             duration: 0.3,
                                                           }
                                                         }}>
-                                      <h1 className='text-xs xl:text-xl text-center underline'>You have {cart.length} in your bucket</h1>
-                                      <div className='w-[80%] mx-auto space-y-1'>
+                                      <h1 className='text-xs xl:text-xl text-center underline my-3'>You have {cart.length} in your bucket</h1>
+                                      <div className='w-[80%] mx-auto space-y-2'>
                                       {cart.map((item=>{
                                         return(
                                           <div className='flex flex-row justify-between'>
-                                          <div className='flex'>
-                                            <img src={item.image} alt={item.name} className="w-[30px]"/>
+                                          <div className='flex w-[60%]'>
+                                            <img src={item.image} alt={item.name} className="w-[30px] my-1"/>
                                             <p>{item.name}</p>
                                           </div>
                                           <p>{item.price}</p>
