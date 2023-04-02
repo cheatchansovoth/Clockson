@@ -21,7 +21,24 @@ export const Shop = () => {
   const [sizeSelection, setSizeSelection] = useState(false);
   const [colorSelection, setColorSelection] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
-
+  const [filters, setFilters] = useState({
+    over100: false,
+    under80: false,
+    under50: false,
+    under15: false,
+  });
+  const handleFilterToggle = (filter) => {
+    setFilters((prevState) => ({
+      ...prevState,
+      [filter]: !prevState[filter],
+    }));
+  };
+  // function handleCheckboxChange(event) {
+  //   setIsChecked(event.target.checked);
+  //   if (event.target.checked) {
+  //     sortPrice(); // call sortPrice function if checkbox is checked
+  //   }
+  // }
   const onClickSlide = (number) => {
     setitemsPerPage(number);
   };
@@ -53,24 +70,48 @@ export const Shop = () => {
     );
   };
   const sortedClothes = useMemo(() => {
-    // sort clothes based on sortBy state
+    let sorted = [...filteredClothes];
+
     switch (sortBy) {
       case "lowtohigh":
-        return [...filteredClothes].sort((a, b) => a.price - b.price);
+        sorted.sort((a, b) => a.price - b.price);
+        break;
       case "hightolow":
-        return [...filteredClothes].sort((a, b) => b.price - a.price);
+        sorted.sort((a, b) => b.price - a.price);
+        break;
       case "az":
-        return [...filteredClothes].sort((a, b) =>
-          a.name.localeCompare(b.name)
-        );
+        sorted.sort((a, b) => a.name.localeCompare(b.name));
+        break;
       case "za":
-        return [...filteredClothes].sort((a, b) =>
-          b.name.localeCompare(a.name)
-        );
+        sorted.sort((a, b) => b.name.localeCompare(a.name));
+        break;
       default:
-        return filteredClothes;
+        break;
     }
-  }, [filteredClothes, sortBy]);
+    Object.entries(filters).forEach(([filter, value]) => {
+      if (value) {
+        switch (filter) {
+          case "over100":
+            sorted = sorted.filter((item) => item.price > 100);
+            break;
+          case "under80":
+            sorted = sorted.filter((item) => item.price < 80);
+            break;
+          case "under50":
+            sorted = sorted.filter((item) => item.price < 50);
+            break;
+          case "under15":
+            sorted = sorted.filter((item) => item.price < 15);
+            break;
+          default:
+            break;
+        }
+      }
+    });
+
+    return sorted;
+  }, [filteredClothes, sortBy, filters]);
+
   const defaultColor = ""; // Set the default color here
 
   const handleColorClick = (color) => {
@@ -469,27 +510,39 @@ export const Shop = () => {
                     }}
                   >
                     <div className="w-[100%] flex items-center space-x-3">
-                      <input type="checkbox" />
+                      <input
+                        type="checkbox"
+                        id="over100"
+                        checked={filters.over100}
+                        onChange={() => handleFilterToggle("over100")}
+                      />
                       <label>Over $100</label>
                     </div>
                     <div className="w-[100%] flex items-center space-x-3">
-                      <input type="checkbox" />
-                      <label>Under $100</label>
-                    </div>
-                    <div className="w-[100%] flex items-center space-x-3">
-                      <input type="checkbox" />
+                      <input
+                        type="checkbox"
+                        id="under80"
+                        checked={filters.under80}
+                        onChange={() => handleFilterToggle("under80")}
+                      />
                       <label>Under $80</label>
                     </div>
                     <div className="w-[100%] flex items-center space-x-3">
-                      <input type="checkbox" />
+                      <input
+                        type="checkbox"
+                        id="under50"
+                        checked={filters.under50}
+                        onChange={() => handleFilterToggle("under50")}
+                      />
                       <label>Under $50</label>
                     </div>
                     <div className="w-[100%] flex items-center space-x-3">
-                      <input type="checkbox" />
-                      <label>Under $50</label>
-                    </div>
-                    <div className="w-[100%] flex items-center space-x-3">
-                      <input type="checkbox" />
+                      <input
+                        type="checkbox"
+                        id="under15"
+                        checked={filters.under15}
+                        onChange={() => handleFilterToggle("under15")}
+                      />
                       <label>Under $15</label>
                     </div>
                   </motion.div>
