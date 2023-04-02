@@ -15,7 +15,7 @@ export const MobileCart = ({ cart }) => {
       </h1>
       <hr></hr>
       <div className="">
-        <div className="h-[80vh] overflow-y-auto">
+        <div className="h-[80vh] overflow-y-auto w-[80%] mx-auto">
           {cart.map((item) => {
             return (
               <div className="flex flex-row justify-between">

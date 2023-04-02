@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { motion } from "framer-motion";
 import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -14,6 +14,7 @@ export const Navbar = ({ cart }) => {
   const navigate = useNavigate();
   const getUser = localStorage.getItem("__userinfo");
   const { removeItem } = useContext(ThemeContext);
+  const [alert, setAlert] = useState(false);
   const SignOut = async () => {
     try {
       localStorage.removeItem("__userinfo");
@@ -25,9 +26,6 @@ export const Navbar = ({ cart }) => {
   };
   const [showCart, setShowCart] = useState(false);
 
-  const OnClickCart = () => {
-    setShowCart(!showCart);
-  };
   const OnClickHandle = () => {
     navigate("/");
   };
@@ -39,10 +37,13 @@ export const Navbar = ({ cart }) => {
   };
 
   const { darkMode, setDarkMode } = useContext(ThemeContext);
-  // const { showCart, setShowCart} = useContext(ThemeContext);
 
   const handleRemoveItem = (item) => {
     removeItem(item);
+    setAlert(true);
+    setTimeout(() => {
+      setAlert(false);
+    }, 2000);
   };
   return (
     <div
@@ -245,6 +246,7 @@ export const Navbar = ({ cart }) => {
           </div>
         </div>
       )}
+      {alert && <Alert show={false} />}
     </div>
   );
 };

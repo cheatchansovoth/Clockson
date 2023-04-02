@@ -1,18 +1,24 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import cloth from "./clothes.json";
 import { useParams, useNavigate } from "react-router";
 import ThemeContext from "./ThemeContext";
+import { Alert } from "./Alert";
 export const PreItem = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [alert, setAlert] = useState(false);
   const { addToCart } = useContext(ThemeContext);
 
   const onClickAddToCart = (item) => {
     addToCart(item);
-    // console.log(item);
+    setAlert(true);
+    setTimeout(() => {
+      setAlert(false);
+    }, 2000);
   };
   return (
     <div>
+      {alert && <Alert show={true} />}
       {cloth
         .filter((item) => item.productID === Number(id))
         .map((item, index) => {
@@ -42,6 +48,7 @@ export const PreItem = () => {
                   <img
                     src="https://www.forevernew.co.nz/static/version1679452572/frontend/ForeverNew/Base/en_NZ/Laybuy_Laybuy/images/laybuy_logo_grape.svg"
                     className="w-[80px]"
+                    alt="laybuy"
                   ></img>
                 </div>
                 <hr></hr>
