@@ -221,7 +221,7 @@ export const Navbar = ({ cart }) => {
                   {cart.map((item) => {
                     return (
                       <div className="flex flex-row space-x-[10%]">
-                        <div className="flex w-[30%]">
+                        <div className="flex w-[50%]">
                           <img
                             src={item.image}
                             alt={item.name}
