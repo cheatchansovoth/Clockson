@@ -25,16 +25,16 @@ export const PreItem = () => {
           return (
             <div
               key={index}
-              className="flex flex-col sm:flex-row w-[80%] justify-center mx-auto h-[80vh] mt-[5%] space-x-[5%]"
+              className="flex flex-col sm:flex-row w-[80%] justify-center mx-auto xl:h-[80vh] mt-[5%] space-x-[5%]"
             >
-              <div className="h-[20vh] sm:h-[50vh]">
+              <div className="h-[50vh] sm:h-[50vh]">
                 <img
                   src={item.image}
                   alt={item.name}
                   className="w-full h-full object-contain sm:object-cover"
                 />
               </div>
-              <div className="w-1.5/5 space-y-[5%] h-[20vh] sm:h-[50vh]">
+              <div className="w-1.5/5 space-y-[5%] sm:h-[50vh]">
                 <p className="font-semibold text-4xl">{item.name}</p>
                 <p className="font-semibold text-2xl">${item.price}</p>
                 <div className="flex space-x-3 items-center justify-center">

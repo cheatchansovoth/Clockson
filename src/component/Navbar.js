@@ -206,7 +206,7 @@ export const Navbar = ({ cart }) => {
           <div className="w-[80%] mx-auto">
             <div className="flex justify-end">
               <motion.div
-                className="w-2/6 xl:w-1/6 min-h-[10vh] bg-slate-800"
+                className="w-2/6 xl:w-1.5/6 min-h-[10vh] bg-slate-800"
                 animate={{
                   opacity: [0, 1],
                   transition: {
@@ -221,7 +221,7 @@ export const Navbar = ({ cart }) => {
                   {cart.map((item) => {
                     return (
                       <div className="flex flex-row space-x-[10%]">
-                        <div className="flex w-[50%]">
+                        <div className="flex w-[50%] space-x-2">
                           <img
                             src={item.image}
                             alt={item.name}
