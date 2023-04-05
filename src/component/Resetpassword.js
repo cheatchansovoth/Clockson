@@ -18,13 +18,13 @@ export const Resetpassword = () => {
       });
   };
   return (
-    <div className="w-full h-[80vh] flex flex-col justify-center items-center space-y-3 ">
-      <div className="text-center space-y-10 lg:w-1/2 w-full justify-center items-center flex flex-col bg-slate-700 h-[50vh] text-black">
+    <div className="w-full min-h-[100vh] flex flex-col justify-center items-center space-y-3 ">
+      <div className="text-center space-y-10 lg:w-1/2 w-full justify-center items-center flex flex-col bg-slate-700 min-h-[50vh] text-black">
         <h1 className="text-3xl font-semibold text-white">Reset Password</h1>
         <div className="flex flex-col space-y-5 w-3/4 sm:w-2/4">
           <form onSubmit={handleResetPassword}>
             <input
-              className="rounded-2xl bg-gray-300 focus:bg-gray-400"
+              className="rounded-2xl bg-gray-300 focus:bg-gray-400 lg:w-2/4"
               type="email"
               placeholder="email"
               onChange={(e) => {

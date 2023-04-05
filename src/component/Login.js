@@ -35,8 +35,8 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
-    <div className="w-full h-[80vh] flex flex-col justify-center items-center space-y-3 ">
-      <div className="text-center space-y-10 lg:w-1/2 w-full justify-center items-center flex flex-col bg-slate-700 h-[50vh] text-black">
+    <div className="w-full min-h-[100vh] flex flex-col justify-center items-center space-y-3 ">
+      <div className="text-center space-y-10 lg:w-1/2 w-full justify-center items-center flex flex-col bg-slate-700 min-h-[50vh]  text-black">
         <h1 className="text-3xl font-semibold text-white">Login</h1>
         <div className="flex flex-col space-y-5 w-3/4 sm:w-2/4">
           <input
