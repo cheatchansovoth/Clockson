@@ -14,8 +14,8 @@ export const MobileCart = ({ cart }) => {
         You have <span>{cart.length} </span>in the bucket
       </h1>
       <hr></hr>
-      <div className="">
-        <div className="h-[80vh] overflow-y-auto w-[80%] mx-auto">
+      <div className="min-h-[100vh]">
+        <div className="min-h-[80vh] overflow-y-auto w-[80%] mx-auto">
           {cart.map((item) => {
             return (
               <div className="flex flex-row justify-between">
@@ -39,7 +39,7 @@ export const MobileCart = ({ cart }) => {
             );
           })}
         </div>
-        <div className="w-screen flex items-end justify-between">
+        <div className=" flex items-end justify-between">
           <button className="bg-slate-500 sm:p-3 px-4 rounded-2xl hover:bg-slate-400 duration-500 ease-in sm:text-xl">
             Check Out
           </button>

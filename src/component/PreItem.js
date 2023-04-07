@@ -25,7 +25,7 @@ export const PreItem = () => {
           return (
             <div
               key={index}
-              className="flex flex-col sm:flex-row w-[80%] justify-center mx-auto xl:h-[80vh] mt-[5%] space-x-[5%]"
+              className="flex flex-col sm:flex-row w-[80%] justify-center mx-auto min-h-[100vh] mt-[5%] space-x-[5%]"
             >
               <div className="h-[50vh] sm:h-[50vh]">
                 <img
