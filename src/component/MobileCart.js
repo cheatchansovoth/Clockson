@@ -2,11 +2,23 @@ import React from "react";
 import ThemeContext from "./ThemeContext";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import Axios from "axios";
 export const MobileCart = ({ cart }) => {
   const { removeItem } = useContext(ThemeContext);
   const navigate = useNavigate();
   const handleRemoveItem = (item) => {
     removeItem(item);
+  };
+  const handleSubmits = () => {
+    const data = { cart: cart };
+    Axios.post(
+      "https://testingrender-i8uu.onrender.com/create-checkout-session",
+      {
+        data,
+      }
+    ).then((res) => {
+      window.location.href = res.data.url;
+    });
   };
   return (
     <div>
@@ -40,7 +52,10 @@ export const MobileCart = ({ cart }) => {
           })}
         </div>
         <div className=" flex items-end justify-between">
-          <button className="bg-slate-500 sm:p-3 px-4 rounded-2xl hover:bg-slate-400 duration-500 ease-in sm:text-xl">
+          <button
+            className="bg-slate-500 sm:p-3 px-4 rounded-2xl hover:bg-slate-400 duration-500 ease-in sm:text-xl"
+            onClick={handleSubmits}
+          >
             Check Out
           </button>
           <button

@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../component/firebase";
 import { signOut } from "firebase/auth";
 import { Alert } from "./Alert";
+import Axios from "axios";
 export const Navbar = ({ cart }) => {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
@@ -44,6 +45,17 @@ export const Navbar = ({ cart }) => {
     setTimeout(() => {
       setAlert(false);
     }, 2000);
+  };
+  const handleSubmits = () => {
+    const data = { cart: cart };
+    Axios.post(
+      "https://testingrender-i8uu.onrender.com/create-checkout-session",
+      {
+        data,
+      }
+    ).then((res) => {
+      window.location.href = res.data.url;
+    });
   };
   return (
     <div
@@ -240,6 +252,20 @@ export const Navbar = ({ cart }) => {
                       </div>
                     );
                   })}
+                </div>
+                <div className="w-[100%] flex justify-center my-[3%]">
+                  <button
+                    className="bg-gray-700 p-3 w-[30%] rounded-xl hover:bg-slate-600"
+                    onClick={handleSubmits}
+                  >
+                    Pay
+                  </button>
+                  <button
+                    className="bg-gray-700 p-3 w-[30%] rounded-xl  hover:bg-slate-600"
+                    onClick={() => navigate("/")}
+                  >
+                    Back
+                  </button>
                 </div>
               </motion.div>
             </div>
