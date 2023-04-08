@@ -19,7 +19,6 @@ export const Login = () => {
       await signInWithEmailAndPassword(auth, email, password);
       const user = auth.currentUser;
       if (user) {
-        // localStorage.setItem("__userinfo", JSON.stringify(user));
         setUser(user);
         navigate("/shop");
       }
@@ -33,6 +32,7 @@ export const Login = () => {
       const user = auth.currentUser;
       if (user) {
         setUser(user);
+        navigate("/shop");
       }
     } catch (err) {
       setError("Invalid Credentials");
