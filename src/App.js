@@ -11,6 +11,7 @@ import { Register } from "./component/Register";
 import { Resetpassword } from "./component/Resetpassword";
 import { PreItem } from "./component/PreItem";
 import { MobileCart } from "./component/MobileCart";
+import { Success } from "./component/Success.js";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -143,6 +144,20 @@ function App() {
                     exit={{ opacity: 0 }}
                   >
                     <MobileCart cart={cart} />
+                  </motion.div>
+                }
+              />
+              <Route
+                path="/shop/success"
+                exact
+                element={
+                  <motion.div
+                    key="MobileCart"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    <Success />
                   </motion.div>
                 }
               />
