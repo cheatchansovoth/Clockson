@@ -8,16 +8,19 @@ import {
 import { useState } from "react";
 import { BsGoogle, BsFacebook, BsTwitter } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import ThemeContext from "./ThemeContext";
 export const Login = () => {
   const navigate = useNavigate();
   const [Error, setError] = useState("");
+  const { getUser, setUser } = useContext(ThemeContext);
   const SignIn = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       const user = auth.currentUser;
-      console.log(user);
       if (user) {
-        localStorage.setItem("__userinfo", JSON.stringify(user));
+        // localStorage.setItem("__userinfo", JSON.stringify(user));
+        setUser(user);
         navigate("/shop");
       }
     } catch (err) {
@@ -27,6 +30,10 @@ export const Login = () => {
   const SignInWithGoogle = async () => {
     try {
       await signInWithPopup(auth, GoogleAuth);
+      const user = auth.currentUser;
+      if (user) {
+        setUser(user);
+      }
     } catch (err) {
       setError("Invalid Credentials");
     }

@@ -10,17 +10,18 @@ import { auth } from "../component/firebase";
 import { signOut } from "firebase/auth";
 import { Alert } from "./Alert";
 import Axios from "axios";
+import { useEffect } from "react";
 export const Navbar = ({ cart }) => {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
-  const getUser = localStorage.getItem("__userinfo");
   const { removeItem } = useContext(ThemeContext);
+  const { getUser, setUser } = useContext(ThemeContext);
   const [alert, setAlert] = useState(false);
   const SignOut = async () => {
     try {
-      localStorage.removeItem("__userinfo");
       await signOut(auth);
       navigate("/");
+      setUser(null);
     } catch (err) {
       console.error(err);
     }
@@ -57,6 +58,7 @@ export const Navbar = ({ cart }) => {
       window.location.href = res.data.url;
     });
   };
+  useEffect(() => {}, [getUser]);
   return (
     <div
       className={darkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"}
@@ -158,7 +160,7 @@ export const Navbar = ({ cart }) => {
             <p className="text-2xl" onClick={() => setDarkMode(!darkMode)}>
               <MdDarkMode />
             </p>
-            {getUser ? (
+            {getUser !== null ? (
               <p onClick={SignOut} className="cursor-pointer">
                 Logout
               </p>

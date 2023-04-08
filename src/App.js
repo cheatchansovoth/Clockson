@@ -18,6 +18,7 @@ function App() {
   const [showCart, setShowCart] = useState(false);
   const [itemsNumber, setItemNumber] = useState(0);
   const [cart, setCart] = useState([]);
+  const [getUser, setUser] = useState(null);
   const addToCart = (product) => {
     const cartId = Date.now().toString();
     const item = { ...product, cartId };
@@ -27,6 +28,7 @@ function App() {
     const updatedCart = cart.filter((item) => item.cartId !== id);
     setCart(updatedCart);
   };
+
   return (
     <Router>
       <ThemeContext.Provider
@@ -39,6 +41,8 @@ function App() {
           setShowCart,
           addToCart,
           removeItem,
+          getUser,
+          setUser,
         }}
       >
         <div
