@@ -3,13 +3,17 @@ import ThemeContext from "./ThemeContext";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
+import { useState } from "react";
+import { Suspense } from "react";
 export const MobileCart = ({ cart }) => {
   const { removeItem } = useContext(ThemeContext);
   const navigate = useNavigate();
+  const [requestWaitTime, setRequestWaitTime] = useState(false);
   const handleRemoveItem = (item) => {
     removeItem(item);
   };
   const handleSubmits = () => {
+    setRequestWaitTime(true);
     const data = { cart: cart };
     Axios.post(
       "https://testingrender-i8uu.onrender.com/create-checkout-session",
@@ -17,7 +21,13 @@ export const MobileCart = ({ cart }) => {
         data,
       }
     ).then((res) => {
-      window.location.href = res.data.url;
+      try {
+        window.location.href = res.data.url;
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setRequestWaitTime(false);
+      }
     });
   };
   return (
@@ -27,7 +37,7 @@ export const MobileCart = ({ cart }) => {
       </h1>
       <hr></hr>
       <div className="min-h-[100vh]">
-        <div className="min-h-[80vh] overflow-y-auto w-[80%] mx-auto">
+        <div className="min-h-[50vh] overflow-y-auto w-[80%] mx-auto">
           {cart.map((item) => {
             return (
               <div className="flex flex-row justify-between">
@@ -51,20 +61,25 @@ export const MobileCart = ({ cart }) => {
             );
           })}
         </div>
-        <div className=" flex items-end justify-between">
-          <button
-            className="bg-slate-500 sm:p-3 px-4 rounded-2xl hover:bg-slate-400 duration-500 ease-in sm:text-xl"
-            onClick={handleSubmits}
-          >
-            Check Out
-          </button>
-          <button
-            className="bg-slate-500 sm:p-3 px-4 rounded-2xl hover:bg-slate-400 duration-500 ease-in sm:text-xl"
-            onClick={() => navigate("/shop")}
-          >
-            Back to shop
-          </button>
-        </div>
+        <Suspense fallback={<div>Loading...</div>}>
+          <div className=" flex items-end justify-between">
+            <button
+              className="bg-slate-500 sm:p-3 px-4 rounded-2xl hover:bg-slate-400 duration-500 ease-in sm:text-xl"
+              onClick={handleSubmits}
+            >
+              Check Out
+            </button>
+            <button
+              className="bg-slate-500 sm:p-3 px-4 rounded-2xl hover:bg-slate-400 duration-500 ease-in sm:text-xl"
+              onClick={() => navigate("/shop")}
+            >
+              Back to shop
+            </button>
+          </div>
+          {requestWaitTime ? (
+            <div className="text-center">Processing...</div>
+          ) : null}
+        </Suspense>
       </div>
     </div>
   );
