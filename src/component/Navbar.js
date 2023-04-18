@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, Suspense } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { motion } from "framer-motion";
 import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -17,6 +17,7 @@ export const Navbar = ({ cart }) => {
   const { removeItem } = useContext(ThemeContext);
   const { getUser, setUser } = useContext(ThemeContext);
   const [alert, setAlert] = useState(false);
+  const [requestWaitTime, setRequestWaitTime] = useState(false);
   const SignOut = async () => {
     try {
       await signOut(auth);
@@ -49,13 +50,20 @@ export const Navbar = ({ cart }) => {
   };
   const handleSubmits = () => {
     const data = { cart: cart };
+    setRequestWaitTime(true);
     Axios.post(
       "https://testingrender-i8uu.onrender.com/create-checkout-session",
       {
         data,
       }
     ).then((res) => {
-      window.location.href = res.data.url;
+      try {
+        window.location.href = res.data.url;
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setRequestWaitTime(false);
+      }
     });
   };
   useEffect(() => {}, [getUser]);
@@ -255,20 +263,25 @@ export const Navbar = ({ cart }) => {
                     );
                   })}
                 </div>
-                <div className="w-[100%] flex justify-center my-[3%]">
-                  <button
-                    className="bg-gray-700 p-3 w-[30%] rounded-xl hover:bg-slate-600"
-                    onClick={handleSubmits}
-                  >
-                    Pay
-                  </button>
-                  <button
-                    className="bg-gray-700 p-3 w-[30%] rounded-xl  hover:bg-slate-600"
-                    onClick={() => navigate("/")}
-                  >
-                    Back
-                  </button>
-                </div>
+                <Suspense fallback={<div>Loading...</div>}>
+                  <div className="w-[100%] flex justify-center my-[3%]">
+                    <button
+                      className="bg-gray-700 p-3 w-[30%] rounded-xl hover:bg-slate-600"
+                      onClick={handleSubmits}
+                    >
+                      Pay
+                    </button>
+                    <button
+                      className="bg-gray-700 p-3 w-[30%] rounded-xl  hover:bg-slate-600"
+                      onClick={() => navigate("/")}
+                    >
+                      Back
+                    </button>
+                  </div>
+                  {requestWaitTime ? (
+                    <div className="text-center">Processing the payment...</div>
+                  ) : null}
+                </Suspense>
               </motion.div>
             </div>
           </div>
